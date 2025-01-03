@@ -4,7 +4,7 @@ import blueLogo from "../assets/blueLogo.png";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ zIndex: "9999" }} >
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
@@ -29,12 +29,12 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#header">
+              <a className="nav-link" href="/home">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#about">
+              <a className="nav-link" href="/technology">
                 Technology Used
               </a>
             </li>
