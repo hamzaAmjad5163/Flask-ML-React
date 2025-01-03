@@ -71,7 +71,7 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <section id="about" className="d-flex justify-content-center align-items-center border-bottom">
+    <section className="d-flex justify-content-center align-items-center border-bottom">
       <div className="row">
         <div className="col-12">
           <div className="d-flex gap-5 py-3">
