@@ -1,101 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Vinyl&display=swap');
+.carousel-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
 
-  .our-work {
-    display: flex;
-    align-items: center;
-    background-color: #14192d;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    overflow: hidden;
+.carousel {
+  display: flex;
+  height: 100%;
+  overflow-y: scroll;  /* Enables scroll inside the container */
+}
+
+.carousel-images {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+.carousel-image img{
+  height: 100%;
+  width: 100%;
+}
+.carousel-item {
+  min-height: 50vh;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-item.active {
+  opacity: 1;
+}
+h2{
+  font-family: 'Kanit', sans-serif;
+  font-size: 3rem;
+  color: #333;
+}
+.carousel-content {
+  padding: 20px;
+  text-align: center;
+  background-color: #f4f4f4;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 100%;
   }
-  
-  .our-work::before {
-    width: 50vw;
-    height: 50vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 0;
-    background: #e93f8e;
-    border-radius: 760px;
-    transform: translate(-50%, -50%);
-    backface-visibility: hidden;
-    opacity: 0.4;
-    filter: blur(270px);
-    content: '';
-    pointer-events: none;
-    will-change: transform;
-  }
-  
-  .our-work h1 {
-    background-image: linear-gradient(269deg, #bc2789 1.26%, #f85956 98.74%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-flex;
-    font-size: 3.3rem;
-    line-height: 1.1;
-  }
-  
-  .slider {
-    display: flex;
-    gap: 55px;
-    align-items: center;
-    position: relative;
-  }
-  
-  @media (max-width: 640px) {
-    .slider {
-      padding-top: 1rem;
-      flex-direction: column;
-      gap: 16px;
-    }
-  }
-  
-  .carousel__slider {
-    position: relative;
-    width: 100%;
-    min-height: 440px;
-  }
-  
-  .carousel__item {
-    width: 100%;
-    min-height: 440px;
-    padding: 48px;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    position: absolute;
-    top: 0%;
-    opacity: 0;
-  }
-  
-  .carousel__nav {
-    display: flex;
-    gap: 16px;
-    align-items: center;
+  .carousel {
     flex-direction: column;
   }
-  
-  @media (max-width: 640px) {
-    .carousel__nav {
-      flex-direction: row;
-    }
+  .carousel-images,
+  .carousel-content {
+    width: 100%;
+    height: auto;
   }
-  
-  .carousel__nav__item {
-    background: #424b58;
-    box-shadow: none;
-    display: block;
-    width: 10px;
-    height: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .carousel__nav__item--active {
-    background: red;
-  }
-  
+}
