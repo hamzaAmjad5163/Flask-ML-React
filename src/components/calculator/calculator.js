@@ -8,11 +8,12 @@ const CalculatorContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: white;
 `;
 
 const CalculatorCard = styled.div`
-  background-color: transparent;
-  border: 1px solid #ddd;
+  background-color: #456480;
+  border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -26,14 +27,27 @@ const Title = styled.h1`
   margin-bottom: 20px;
 `;
 
-const Screen = styled.input`
-  width: 100%;
-  padding: 15px;
+const Screen = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #DAE4E7;
+  color: #000;
   font-size: 24px;
   text-align: right;
-  border: 1px solid #ddd;
   border-radius: 5px;
+  padding: 15px;
   margin-bottom: 10px;
+  min-height: 40px;
+`;
+
+const InputText = styled.div`
+  text-align: left;
+  font-size: 24px;
+`;
+
+const OutputText = styled.div`
+  text-align: right;
+  font-size: 24px;
 `;
 
 const ButtonGrid = styled.div`
@@ -43,22 +57,31 @@ const ButtonGrid = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 15px;
+  padding: 10px;
   font-size: 18px;
   border: none;
   border-radius: 5px;
-  background-color: #4260B5;
+  background-color: #A7AEBD;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color:rgb(2, 60, 122);
+    background-color: rgb(125, 130, 141);
+  }
+`;
+
+const SpecialButton = styled(Button)`
+  background-color: #DE9BA3;
+
+  &:hover {
+    background-color:rgb(194, 136, 143);
   }
 `;
 
 const Calculator = () => {
   const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
 
   const handleButtonClick = (value) => {
     setInput((prevInput) => prevInput + value);
@@ -70,6 +93,7 @@ const Calculator = () => {
 
   const handleClear = () => {
     setInput("");
+    setOutput("");
   };
 
   const handleCalculation = async () => {
@@ -79,7 +103,7 @@ const Calculator = () => {
       });
 
       if (response.data.result !== undefined && response.data.result !== null) {
-        setInput(response.data.result.toString());
+        setOutput(response.data.result.toString());
       } else {
         alert("Invalid equation");
       }
@@ -92,26 +116,32 @@ const Calculator = () => {
   return (
     <CalculatorContainer>
       <CalculatorCard>
-        <Title>Python Calculator</Title>
-        <Screen type="text" value={input} readOnly placeholder="Enter your calculation" />
+        <Title style={{ color: "#DE9BA3" }}>Scientific Calculator</Title>
+        <Screen>
+          <InputText>{input}</InputText>
+          <OutputText>{output}</OutputText>
+        </Screen>
         <ButtonGrid>
-          <Button onClick={() => handleButtonClick("1")}>1</Button>
-          <Button onClick={() => handleButtonClick("2")}>2</Button>
-          <Button onClick={() => handleButtonClick("3")}>3</Button>
-          <Button onClick={() => handleButtonClick("+")}>+</Button>
-          <Button onClick={() => handleButtonClick("4")}>4</Button>
-          <Button onClick={() => handleButtonClick("5")}>5</Button>
-          <Button onClick={() => handleButtonClick("6")}>6</Button>
-          <Button onClick={() => handleButtonClick("-")}>-</Button>
+          <SpecialButton onClick={handleClear}>AC</SpecialButton>
+          <SpecialButton onClick={handleBackspace}>DEL</SpecialButton>
+          <SpecialButton onClick={() => handleButtonClick("%")}>%</SpecialButton>
+          <SpecialButton onClick={() => handleButtonClick("/")}>/</SpecialButton>
           <Button onClick={() => handleButtonClick("7")}>7</Button>
           <Button onClick={() => handleButtonClick("8")}>8</Button>
           <Button onClick={() => handleButtonClick("9")}>9</Button>
-          <Button onClick={() => handleButtonClick("*")}>x</Button>
+          <SpecialButton onClick={() => handleButtonClick("*")}>*</SpecialButton>
+          <Button onClick={() => handleButtonClick("4")}>4</Button>
+          <Button onClick={() => handleButtonClick("5")}>5</Button>
+          <Button onClick={() => handleButtonClick("6")}>6</Button>
+          <SpecialButton onClick={() => handleButtonClick("-")}>-</SpecialButton>
+          <Button onClick={() => handleButtonClick("1")}>1</Button>
+          <Button onClick={() => handleButtonClick("2")}>2</Button>
+          <Button onClick={() => handleButtonClick("3")}>3</Button>
+          <SpecialButton onClick={() => handleButtonClick("+")}>+</SpecialButton>
           <Button onClick={() => handleButtonClick("0")}>0</Button>
-          <Button onClick={() => handleButtonClick("/")}>/</Button>
-          <Button onClick={handleCalculation}>=</Button>
-          <Button onClick={handleBackspace}>←</Button>
-          <Button onClick={handleClear}>CLR</Button>
+          <Button onClick={() => handleButtonClick("00")}>00</Button>
+          <Button onClick={() => handleButtonClick(".")}>.</Button>
+          <SpecialButton onClick={handleCalculation}>=</SpecialButton>
         </ButtonGrid>
       </CalculatorCard>
     </CalculatorContainer>
