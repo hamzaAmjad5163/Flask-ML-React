@@ -40,7 +40,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/chart">
-                Stack Overflow States
+                States
               </Link>
             </li>
             <li className="nav-item">
