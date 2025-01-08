@@ -16,8 +16,12 @@
   background-color: #3f61b5;
   color: white;
 }
+.text-main{
+  color: #3f61b5;
+}
 .button-main:hover{
   background-color: #2b427c;
+  color: #fff;
 }
 .App-header {
   background-color: #282c34;
